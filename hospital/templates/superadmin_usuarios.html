@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bosque de Maria Superadmin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/superadmin_usuarios.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container sidebar">
+        <a class="logo" href="/">
+            <img src="\static\imagenes\logo_Border.png" alt="logo" width="100" height="100">
+            <h2 class="logo-button">Inicio</h2>
+        </a>
+        <a href="/perfil_superadministrativo" class="side-menu"><h2 class="side-button side-dashboard">Dashboard</h2></a>
+        <a href="/perfil_superadministrativo/historia_medica" class="side-menu"><h2 class="side-button">Historia Medica</h2></a>
+        <a href="/perfil_superadministrativo/usuarios" class="side-menu"><h2 class="side-button side-users">Usuarios</h2></a>
+        <a href="/perfil_superadministrativo/citas" class="side-menu"><h2 class="side-button">Citas</h2></a>
+    </div>
+    <div class="container dashboard">
+        <h1>Usuarios</h1>
+    </div>
+</body>
+</html>

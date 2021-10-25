@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bosque de Maria Superadmin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/superadmin.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container sidebar">
+        <a class="logo" href="/">
+            <img src="\static\imagenes\logo_Border.png" alt="logo" width="100" height="100">
+            <h2 class="logo-button">Inicio</h2>
+        </a>
+        <a href="/perfil_superadministrativo" class="side-menu"><h2 class="side-button side-dashboard">Dashboard</h2></a>
+        <a href="/perfil_superadministrativo/historia_medica" class="side-menu"><h2 class="side-button">Historia Medica</h2></a>
+        <a href="/perfil_superadministrativo/usuarios" class="side-menu"><h2 class="side-button">Usuarios</h2></a>
+        <a href="/perfil_superadministrativo/citas" class="side-menu"><h2 class="side-button">Citas</h2></a>
+    </div>
+    <div class="container dashboard">
+        <section class="card">
+            <div class="icon-card"><i class="fas fa-user-md fa-3x"></i></div>
+            <div class="info-card">
+                <p class="statistic">10</p>
+                <p class="label">Doctores</p>
+            </div>
+        </section>
+        <section class="card">
+            <div class="icon-card"><i class="fas fa-solid fa-users fa-3x"></i></i></div>
+            <div class="info-card">
+                <p class="statistic">10</p>
+                <p class="label">Pacientes</p>
+            </div>
+        </section>
+        <section class="card">
+            <div class="icon-card"><i class="fas fa-solid fa-file-medical fa-3x"></i></div>
+            <div class="info-card">
+                <p class="statistic">10</p>
+                <p class="label">Citas</p>
+            </div>
+        </section>
+        <section class="card">
+            <div class="icon-card"><i class="fas fa-solid fa-file-prescription fa-3x"></i></div>
+            <div class="info-card">
+                <p class="statistic">10</p>
+                <p class="label">Recetas Médicas</p>
+            </div>
+        </section>
+        <section class="card">
+            <div class="icon-card"><i class="fas fa-solid fa-book-medical fa-3x"></i></div>
+            <div class="info-card">
+                <p class="statistic">10</p>
+                <p class="label">Historias Clínicas</p>
+            </div>
+        </section>
+        <section class="card">
+            <div class="icon-card"><i class="fas fa-solid fa-file-waveform fa-3x"></i></div>
+            <div class="info-card">
+                <p class="statistic">10</p>
+                <p class="label">Reportes de Laboratorio</p>
+            </div>
+        </section>
+        <section class="card">
+            <div class="icon-card"><i class="fas fa-solid fa-file-lines fa-3x"></i></div>
+            <div class="info-card">
+                <p class="statistic">10</p>
+                <p class="label">Documentos</p>
+            </div>
+        </section>
+        <section class="card">
+            <div class="icon-card"><i class="fas fa-solid fa-file-invoice-dollar fa-3x"></i></div>
+            <div class="info-card">
+                <p class="statistic">10</p>
+                <p class="label">Facturas de pago</p>
+            </div>
+        </section>
+        <table class="table">
+            <tr>
+                <th>Person 1</th>
+                <th>Person 2</th>
+                <th>Person 3</th>
+                <th>Person 4</th>
+              </tr>
+              <tr>
+                <td>Emil</td>
+                <td>Tobias</td>
+                <td>Linus</td>
+                <td>Robin</td>
+              </tr>
+              <tr>
+                <td>16</td>
+                <td>14</td>
+                <td>10</td>
+                <td>10</td>
+              </tr>
+        </table>
+    </div>
+</body>
+</html>

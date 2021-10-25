@@ -1,0 +1,161 @@
+body {
+  height: 100vh;
+  max-height: 100vh;
+  margin: 0;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  min-width: 800px;
+  height: 100%;
+}
+
+.panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 50%;
+  height: 100%;
+  color: white;
+}
+
+.first-column {
+  background: -webkit-gradient(linear, left top, right top, from(#5271ff), to(#7c2ae8));
+  background: linear-gradient(90deg, #5271ff 0%, #7c2ae8 100%);
+}
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px;
+}
+
+.spacer {
+  height: 50px;
+}
+
+.icons-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 0 20px 0 20px;
+}
+
+.fas {
+  color: white;
+}
+
+.welcome {
+  margin: 0 40px 0 40px;
+}
+
+.title1 {
+  font-size: 42px;
+  font-weight: 400;
+}
+
+.description {
+  font-size: 24px;
+  font-weight: 100;
+}
+
+.second-column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.panel2-text {
+  color: #5271ff;
+  margin: 0;
+  text-align: center;
+  width: 70%;
+}
+
+.login {
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.register {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50%;
+}
+
+.label {
+  color: black;
+  margin: 40px 0 7px 0px;
+  width: 100%;
+  max-width: 350px;
+}
+
+.input-text {
+  width: 90%;
+  padding: 15px;
+  max-width: 350px;
+}
+
+button {
+  margin-top: 50px;
+  background-color: #5271ff;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  border-width: 0;
+  width: 80%;
+  max-width: 300px;
+}
+/*# sourceMappingURL=login.css.map */

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Contacto
+{% endblock %}
+
+{% block styles %}
+
+    <link rel="stylesheet" href="{{url_for('static',filename='contacto.css')}}">
+
+{% endblock %}
+
+{% block content %}
+    <div class="form-container">
+            
+
+        <div class="container">
+
+            <div>
+                <h2 class="heading-title">Ante cualquier duda, ¡Contáctanos!</h2>
+        
+                <img class="contact-img" src="{{url_for('static',filename='imagenes/contact.png')}}" alt="">
+                <p class="slogan">Estamos a tu servicio, tu salud es nuestro propósito y prioridad, por eso habilitamos para ti múltiples vías de comunicación.</p>
+                
+            </div>
+
+            <div class="contact-box">
+                <div class="left"></div>
+                <div class="right">
+                    <h2>Envía tus datos</h2>
+                    <input type="text" class="field" placeholder="Tu nombre">
+                    <input type="email" class="field" placeholder="Tu correo">
+                    <input type="number" class="field" placeholder="Tu telefono">
+                    <textarea placeholder="Tu mensaje" class="field"></textarea>
+                    <button class="btn">Enviar</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}

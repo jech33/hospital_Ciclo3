@@ -1,0 +1,24 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+.hospital{
+    padding: 2rem;
+    text-align: center;
+    background-color: #5271ff;
+}
+
+
+h1{
+    
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+.logo_inicio {
+    text-decoration: none;
+    color: white;
+}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Citas
+{% endblock %}
+
+
+{% block styles %}
+
+    <link rel="stylesheet" href="{{url_for('static',filename='citas.css')}}">
+
+{% endblock %}
+
+
+{% block content %}
+    
+    <body>
+        
+        <div class="container">
+            <form method="POST" class="citas-form">
+    
+                {{ citas_form.hidden_tag() }}
+
+                <h2>
+                    Agenda tu cita
+                </h2>
+                <br>
+                {{ citas_form.paciente.label() }}
+                {{ citas_form.paciente(placeholder="Su nombre") }}
+                
+                {{ citas_form.medico.label() }}
+                {{ citas_form.medico(placeholder="Seleccione su médico") }} 
+
+                {{ citas_form.fecha.label() }}
+                {{ citas_form.fecha(placeholder="Seleccione su médico") }}    
+
+                {{ citas_form.hora.label() }}
+                {{ citas_form.hora(placeholder="Seleccione su médico") }}
+
+                <br>
+
+                {{ citas_form.submit(class="btn btn-lg btn-block btn-primary") }}
+    
+                
+    
+            </form>
+        </div>
+
+    </body>
+
+{% endblock %}

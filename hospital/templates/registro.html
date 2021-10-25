@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 
+        {% block title %}
+        Camino Bosque de Maria
+        {% endblock %}
+    </title>
+
+{% block styles %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='registro.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap" rel="stylesheet">
+
+{% endblock %}
+</head>
+
+{% block content %}
+    
+<body>
+    
+    <div class="container">
+        <div class="panel first-column">
+            <a class="logo" href="/"><img src="static\imagenes\logo_Border.png" alt="logo" width="100" height="100"></a>
+            <div class="spacer"></div>
+            <div class="icons-container">  
+                <i class="fas fa-user-md fa-9x"></i>
+                <i class="fas fa-notes-medical fa-9x"></i>
+                <i class="fas fa-hospital fa-9x"></i>
+            </div>
+            <div class="titulo">  
+                <h1 class="welcome title1">Bienvenido a Bosque de Maria</h1>
+                <h2 class="welcome description">Su software confiable para la gestión de citas médicas</h2>
+            </div>
+        </div>
+        <div class="panel second-column">
+            <div class="spacer"></div>
+            <h2 class="panel2-text login">Crear cuenta</h2>
+            <h3 class="panel2-text register">Ya estás registrado? <br> <a class="link-registro" href="/login">Ingresa</a></h3>
+            <form method="POST" class="form-register">
+        
+                {{ form.hidden_tag() }}
+                
+                <br>
+    
+                
+                <p class="label">{{ form.nombres.label() }}</p>
+                {{ form.nombres(placeholder="Sus nombres", id="user", class="input-text") }}
+    
+                <p class="label">{{ form.apellidos.label() }}</p>
+                {{ form.apellidos(placeholder="Sus apellidos", id="apellidos", class="input-text") }}
+    
+                <p class="label">{{ form.email.label() }}</p>
+                {{ form.email(placeholder="Su correo", id="email", class="input-text") }}
+    
+                <p class="label">{{ form.documento.label() }}</p>
+                {{ form.documento(placeholder="Su número de documento", id="identidad", class="input-text") }}
+    
+                <p class="label">{{ form.password1.label() }}</p>
+                {{ form.password1(placeholder="Su contraseña", id="password1", class="input-text") }}
+                
+                <p class="label">{{ form.password2.label() }}</p>
+                {{ form.password2(placeholder="Confirme su contraseña", id="password2", class="input-text") }}
+    
+                <br>
+    
+                {{ form.submit(class="btn btn-lg btn-block btn-primary submit-button") }}
+    
+            </form>
+            <div class="spacer"></div>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
+
+
+
