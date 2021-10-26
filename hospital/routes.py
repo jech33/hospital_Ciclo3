@@ -1,5 +1,6 @@
+from flask.helpers import flash
 from hospital import app
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, flash, get_flashed_messages
 from hospital.models import Citas, User
 from hospital.forms import CitasForm, RegisterForm
 from hospital import db
@@ -19,6 +20,7 @@ def contacto():
 @app.route('/registro', methods=['GET','POST'])
 def register_page():
     form = RegisterForm()
+
     if form.validate_on_submit():
         user_to_create = User(
             nombres= form.nombres.data,
@@ -29,7 +31,19 @@ def register_page():
         db.session.add(user_to_create)
         db.session.commit()
         return redirect(url_for('inicio'))
+
+    if form.errors !={}:
+        for err_msg in form.errors.values():
+            flash(f'Hubo un error creando al usuario: {err_msg}')
+
     return render_template('registro.html', form=form)
+
+      
+
+    
+
+
+    
 
 @app.route('/login', methods = ["GET","POST"])
 def Login():
