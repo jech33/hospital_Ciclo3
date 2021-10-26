@@ -31,4 +31,8 @@ class CitasForm(FlaskForm):
     #hora=StringField(label='Escoja la hora')
     hora=SelectField('Escoja la hora',choices=lista_horas,validators=[DataRequired()])
     submit = SubmitField(label='Agendar cita')
-    
+
+class LoginForm(FlaskForm):
+    documento=StringField(label='Su número de documento:', validators=[DataRequired()])
+    password=PasswordField(label='Ingrese su contraseña:', validators=[DataRequired()])
+    submit = SubmitField(label='Iniciar sesión')
