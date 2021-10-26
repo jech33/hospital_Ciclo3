@@ -1,193 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Radicación PQR</title>
-        <link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
-        <link rel="stylesheet" href="assets/libs/css/style.css">
-        <link rel="stylesheet" href="assets/libs/css/main.css">
-        <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-        <link rel="stylesheet" href="assets/vendor/charts/chartist-bundle/chartist.css">
-        <link rel="stylesheet" href="assets/vendor/charts/morris-bundle/morris.css">
-        <link rel="stylesheet" href="assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
-        <link rel="stylesheet" href="assets/vendor/charts/c3charts/c3.css">
-        <link rel="stylesheet" href="assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
-        <link rel="stylesheet" href="css/estilosIcetex2.css">
-    </head>
-    <body>
-	<div id="myModal" class="modal">
-		<div class="modal-content">
-			<div class="modal-header">
-				<a target="_blank" href="inicio"><p class="modalTitle">Hospital Caminos Bosques de María</p></a>
-			</div>
-			<div class="modal-body">
-				<p id="dynamicMessage"></p>
-			</div>
-		</div>
-	</div>
-	<div id="loadingMask" style="display: none;">
-		<img id="loading-imageMask" src="images/loading.gif">
-	</div>
-	<br>
-	<br>
-	<center>
-		<div class="headerImage-container">
-			<img class="headerImage-left" alt="" src="images/logo-trs.png"> <img class="headerImage-right" alt="" src="images/mineducacion-logo.png">
-		</div>
-		<br>
-		<table class="resizableContainer bigScreenOnly" style="text-align: center; vertical-align: middle; height: 100%;">
-			<tbody><tr>
-				<td style="width: 50%"><div class="headerTitleContainer">
-						<h4 class="headerTitle">SISTEMA DE ATENCIÓN VIRTUAL</h4>
-						<div></div></div></td>
-			</tr>
-		</tbody></table>
-		<table class="resizableContainer smallScreenOnly" style="text-align: center; vertical-align: middle; height: 100%; width: 100%;">
-			<tbody style="width: 100% !important">
-				<tr>
-					<td style="width: 100%"><div class="headerTitleContainer"><h4 class="headerTitle">PETICIONES,QUEJAS Y/O RECLAMOS</h4><div></div></div></td>
-				</tr>
-				<tr>
-					<td style="width: 100%"><button class="btn-ict btn-lg-ict headerButton" id="btnRedirect2" onclick="window.location.href = 'consultaSolicitud.html'">Consulta tus Solicitudes</button></td>
-				</tr>
-			</tbody>
-		</table>
-		<br>
-		<div class="container resizableContainer">
-			<fieldset id="myForm">
-				<div class="row">
-					<div class="row">
-						<label class="field3" style="text-align: center;">El Hospital Caminos Bosques de María dispone del Sistema de Atención Virtual - (SAV), donde a través de un formulario los pacientes pueden presentar sus (Peticiones, Quejas y/o Reclamos).</label>
-						<label class="field3" style="text-align: center;">* Campos Obligatorios</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="column">
-						<div class="row">
-							<label class="field" for="identificationType">Tipo de Identificación *</label> <select id="identificationType" name="slect"><option value="empty">Seleccione una opción</option><option value="CC">Cédula de Ciudadanía</option><option value="TI">Tarjeta de Identidad</option><option value="CE">Cédula de Extranjería</option><option value="PA">Pasaporte</option><option value="NIT">NIT</option><option value="NUIP">NUIP</option></select>
-						</div>
-						<div class="row">
-							<label class="field" for="identification">Número de Identificación *</label>
-							<input type="number" name="qty" id="identification" maxlength="15" class="textbox-300" required="" onkeypress="return isNumberKey(event);">
-						</div>
-						<div id="namesContainer">
-							<div class="row">
-								<label class="field" for="firstName1">Primer Nombre * </label>
-								<input type="text" id="firstName1" name="qty" class="textbox-300">
-							</div>
-							<div class="row">
-								<label class="field" for="firstName2">Segundo Nombre</label>
-								<input type="text" id="firstName2" name="qty" class="textbox-300" placeholder="Opcional">
-							</div>
-							<div class="row">
-								<label class="field" for="lastName1">Primer Apellido *</label>
-								<input type="text" name="qty" id="lastName1" class="textbox-300">
-							</div>
-							<div class="row">
-								<label class="field" for="lastName2">Segundo Apellido</label>
-								<input type="text" name="qty" id="lastName2" class="textbox-300" placeholder="Opcional">
-							</div>
-						</div>
-					</div>
-					<div class="column">
-						<div class="row">
-							<label class="field" for="email">Correo electrónico *</label>
-							<input type="email" name="qty" id="email" class="textbox-300">
-						</div>
-						<div class="row">
-							<label class="field" for="mobile">Teléfono celular *</label>
-							<input type="number" name="qty" id="mobile" class="textbox-300">
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="column">
-						<div class="row">
-							<label class="field" for="t1">Tipo Solicitud *</label> <select id="t1" name="slect"><option value="empty">Seleccione una opción</option><option value="PETICIÓN">PETICIÓN</option><option value="QUEJA">QUEJA</option><option value="RECLAMO">RECLAMO</option></select>
-						</div>
-						<div id="txt1" class="row" style="visibility: hidden; display: none;">
-							<div>
-								<span style="color: red;">¡Recuerda!</span> Si deseas solicitar información pública de la entidad, debes consultar a <a target="_blank" href="inicio">aquí</a>. <br> <br> Esta opcion no sera atendida para radicar peticiones, quejas o
-								reclamos asociados a la calidad del servicio. </a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="divider"></div>
-				<div class="row">
-					<div class="column">
-						<div class="row">
-							<label class="field" for="detail">Detalle *</label>
-							<textarea id="detail" name="qty" rows="5" cols="41" maxlength="1000"></textarea>
-						</div>
-						<div class="row">
-							<div class="col-10">
-								<input type="checkbox" id="dataAuthorization" class="checkbox">
-							</div>
-							<div class="col-90">
-								<label for="dataAuthorization" class="field3">Acepto la política de privacidad y uso de datos personales</label>
-							</div>
-						</div>
-					</div>
-					<div class="column">
-						<div class="row">
-							<label class="field" for="responseChannel">¿Por qué medio desea recibir la respuesta? *</label> <select id="responseChannel" name="slect"><option value="EMAIL">Correo Electrónico</option></select>
-							<input type="text" disabled="true" id="responseChannelPreview" class="textbox-300">
-						</div>
-						<div class="row">
-							<div id="formuploadajax">
-								<label class="field" for="fileUpload">Archivos Adjuntos *</label>
-								<div class="form-group custom-file">
-									<label class="custom-file-label" for="fileUpload" id="fileName">Seleccionar Archivo</label>
-									<input name="fileToUoload" type="file" class="custom-file-input" id="fileUpload" aria-describedby="inputGroupFileAddon01" lang="es">
-								</div>
-								<div id="formuploadajaxElements">
-									<br>
-								</div>
-							</div>
-							<!-- 							<div id="formuploadajax"> -->
-							<!-- 								<label class="custom-file-label" for="fileInput1">Archivos Adjuntos</label> -->
-							<!-- 								<input name="fileToUoload" type="file" class="custom-file" id="fileInput1" aria-describedby="inputGroupFileAddon01" lang="es"/> -->
-							<!-- 								<input type="button" id="attachmentButton" class="btn btn-outline-light" value="Subir" /> -->
-							<!-- 							</div> -->
-						</div>
-						<div class="row">
-							<div class="captcha">
-								<center>
-									<div class="g-recaptcha" data-callback="enableBtn" id="captcha" data-sitekey="6LcXRgkUAAAAAAtVPOJUfdN5JAF9a86cgkQCRHva"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcXRgkUAAAAAAtVPOJUfdN5JAF9a86cgkQCRHva&amp;co=aHR0cHM6Ly9zYXYuaWNldGV4Lmdvdi5jbzo4NDQz&amp;hl=es&amp;v=qljbK_DTcvY1PzbR7IG69z1r&amp;size=normal&amp;cb=by8skmza9s5r" width="304" height="78" role="presentation" name="a-q3mqx0xr3rx3" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div></center>
-							</div>
-						</div>
-					</div>
-				</div>
-				<br>
-				<div class="row">
-					<div class="customBtnContainer">
-						<button class="btn btn-outline-light customBtn" id="btnFiling" disabled="disabled" style="background: rgb(35, 63, 102); color: white;">ENVIAR</button>
-					</div>
-				</div>
-				<br>
-			</fieldset>
-		</div>
-	</center>
-	<script type="text/javascript" async="" src="https://www.gstatic.com/recaptcha/releases/qljbK_DTcvY1PzbR7IG69z1r/recaptcha__es.js" crossorigin="anonymous" integrity="sha384-PfQwqZE8KuXWrbC1t2wCc842s+XKmb3Wek5Vo5VCiBBdM32RTGYkU0EXXMiUQMl1"></script><script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&amp;render=explicit&quot; async defer"></script>
-	<script src="js/jquery-3.5.1.min.js"></script>
-	<script src="js/main.js"></script>
-	<script src="js/modal.js"></script>
-	<script type="text/javascript" src="js/MatrizTipificaciones.js"></script>
-	<script language="javascript" type="text/javascript">
-		$('#loadingMask').hide();
-	</script>
-                    <div class="card-footer text-center py-3">
-                        <div class="small"><a href="login">¿Se encuentra registrado? Ir a login </a></div>
-                    </div>
-                    <div class="sb-sidenav-menu-heading">Actividades</div>
-                            <a class="nav-link" href="Perfil_pacientes">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Pacientes
-                            </a>
-                    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión pacientes PQR</title>
+    <!-- aos css file cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
 
-<div style="background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px; position: absolute; transition: visibility 0s linear 0.3s, opacity 0.3s linear 0s; opacity: 0; visibility: hidden; z-index: 2000000000; left: 0px; top: -10000px;"><div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: rgb(255, 255, 255); opacity: 0.05;"></div><div class="g-recaptcha-bubble-arrow" style="border: 11px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -11px; z-index: 2000000000;"></div><div class="g-recaptcha-bubble-arrow" style="border: 10px solid transparent; width: 0px; height: 0px; position: absolute; pointer-events: none; margin-top: -10px; z-index: 2000000000;"></div><div style="z-index: 2000000000; position: relative;"><iframe title="Prueba reCAPTCHA" src="https://www.google.com/recaptcha/api2/bframe?hl=es&amp;v=qljbK_DTcvY1PzbR7IG69z1r&amp;k=6LcXRgkUAAAAAAtVPOJUfdN5JAF9a86cgkQCRHva" name="c-q3mqx0xr3rx3" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox" style="width: 100%; height: 100%;"></iframe></div></div></body>
+    <!-- magnific popup css cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+    />
+
+    <!--descarga de extensiones bootstrapt cdn link https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqa3pTZGM3UDkyMmF3UXNFdTJTdWFFZWNXdGRGQXxBQ3Jtc0tuemQ2R3Q5VkFfek9rNEduSGhlM3RQV2MzRFNReEZZcXdYM1VPd25LdEtJdjBUbWM2dDNsN3RIbzdYZlBULUxMU25YN1BLdjRRY2tkLXppZmlhYXBwa1Q3OHROWjF5b2JpVnYwbTIxSTJkRHJLc21lTQ&q=https%3A%2F%2Fcdnjs.com%2Flibraries%2Ftwitter-bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap-grid.min.css"
+    />
+
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    />
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="static/style.css" />
+  </head>
+  <body>
+    <!-- header section starts  -->
+
+    <header class="header-nav">
+      <div class="container">
+        <a href="#" class="logo"><span>C</span>amino<span>B</span>osque<span>D</span>e<span>M</span>aría.</a>
+        <nav class="nav">
+          <ul>
+            <li><a href="Citas.html">Gestión de citas</a></li>
+            <li><a href="#review">PQR</a></li>
+            <li><a href="index.html">Cerrar sesión</a></li>
+          </ul>
+        </nav>
+
+        <div class="fas fa-bars"></div>
+      </div>
+    </header>
+
+    <section class="Inicio" id="Inicio">
+      <div class="container">
+        <div class="row min-vh-100 align-items-center text-center text-md-left">
+          <div class="col-md-6 pr-md-5" data-aos="zoom-in">
+            <img src="static/imagenes/pqr.svg" width="100%" alt="" />
+          </div>
+
+          <div class="col-md-6 pl-md-5 content" data-aos="fade-left">
+            <h1><span>mantente</span> a salvo, <span>mantente</span> saludable.</h1>
+            <h3>te cuidamos.</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- contact section starts  -->
+
+    <section class="contact" id="contact">
+      <div class="container min-vh-100">
+        <div class="row justify-content-center">
+          <h1 class="heading">
+            <span>'</span> Peticiones, Quejas y Reclamos <span>'</span>
+          </h1>
+
+          <div class="col-md-10" data-aos="flip-down">
+            <form action="">
+              <div class="inputBox">
+                <input type="text" placeholder="Nombres" />
+                <input type="text" placeholder="Apellidos" />
+                <input type="number" placeholder="Celular" />
+                <input type="email" placeholder="correo electrónico" />
+              </div>
+            <div class="inputBox">
+                <input type="number" placeholder="Identificación" />
+                <select name="" id="">
+                  <option value="" disabled selected>
+                    Tipo ID
+                  </option>
+                  <option value="cc">CC</option>
+                  <option value="ce">CE</option>
+                  <option value="ti">TI</option>
+                </select>
+              </div>
+              
+              <div class="inputBox">
+                <input type="date" id="start" name="trip-start"
+                value="2018-07-22"
+                min="1980-01-01" max="2030-12-31">
+                <select name="" id="">
+                  <option value="" disabled selected>
+                    Tipo de solicitud
+                  </option>
+                  <option value="Petición">Petición</option>
+                  <option value="Queja">Queja</option>
+                  <option value="Reclamo">Reclamo</option>
+              <textarea
+                name=""
+                id=""
+                cols="30"
+                rows="10"
+                placeholder="Comentarios ( opcional )"
+              ></textarea>
+                </select>
+              </div>
+            <div class="row">
+				<div class="captcha">
+					<center>
+					<div class="g-recaptcha" data-callback="enableBtn" id="captcha" data-sitekey="6LcXRgkUAAAAAAtVPOJUfdN5JAF9a86cgkQCRHva"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcXRgkUAAAAAAtVPOJUfdN5JAF9a86cgkQCRHva&amp;co=aHR0cHM6Ly9zYXYuaWNldGV4Lmdvdi5jbzo4NDQz&amp;hl=es&amp;v=qljbK_DTcvY1PzbR7IG69z1r&amp;size=normal&amp;cb=by8skmza9s5r" width="304" height="78" role="presentation" name="a-q3mqx0xr3rx3" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div></center>
+				</div>
+			</div>
+              <input
+                type="submit"
+                name=""
+                id=""
+                value="enviar"
+                class="button"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- footer section starts  -->
+
+    <section class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4" data-aos="fade-right">
+            <a href="#" class="logo"><span>C</span>amino<span>B</span>osque<span>D</span>e<span>M</span>aria</a>
+            <p>
+              Expresar el amor de Dios mediante una atención integral de salud a la comunidad y la formación.
+            </p>
+          </div>
+
+          <div class="col-md-4 text-center" data-aos="fade-up">
+            <h3>links</h3>
+            <a href="#Inicio">Inicio</a>
+            <a href="#about">Servicios</a>
+            <a href="#facility">Instalaciones</a>
+            <a href="#review">Certificaciones</a>
+            <a href="conocenos.html">Conócenos</a>
+            <a href="login.html">Iniciar Sesión</a>
+          </div>
+
+          <div class="col-md-4 text-center" data-aos="fade-left">
+            <h3>share</h3>
+            <a href="#">facebook</a>
+            <a href="#">twitter</a>
+            <a href="#">instagram</a>
+            <a href="#">github</a>
+          </div>
+        </div>
+      </div>
+      <h1 class="credit text-center mx-auto">
+        Contacto <span>atencion@hcbdmaria.com</span> | Linea de atención:080002346712.
+      </h1>
+      <h1 class="credit text-center mx-auto">
+        created by <span>Equipo 5 grupo 1186 MisiónTIC 2021 UniNorte</span> | all rights reserved.
+      </h1>
+    </section>
+
+    <!-- footer section ends -->
+
+    <!-- jquery cdn link  -->
+    <script src="
+https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- magnific popup js link  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+    <!-- aos js file cdn link  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- custom js link  -->
+    <script src="js/main.js"></script>
+
+    <script>
+      AOS.init({
+        duration: 1000,
+        delay: 400,
+      });
+    </script>
+  </body>
 </html>
+

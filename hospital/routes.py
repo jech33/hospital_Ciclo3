@@ -7,9 +7,9 @@ from hospital import db
 
 
 @app.route('/')
-@app.route('/inicio', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def inicio():
-    return render_template('Inicio.html')
+    return render_template('index.html')
 
 
 @app.route('/contacto', methods=['GET','POST'])
@@ -38,7 +38,9 @@ def register_page():
 
     return render_template('registro.html', form=form)
 
-      
+@app.route('/conocenos', methods=['GET'])
+def conocenos():
+    return render_template('conocenos.html')
 
     
 
