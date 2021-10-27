@@ -1,16 +1,18 @@
+import bcrypt
 from flask.helpers import flash
 from flask_wtf import form
 from hospital import app
 from flask import render_template, redirect, url_for, flash, get_flashed_messages
 from hospital.models import Citas, User
 from hospital.forms import CitasForm, RegisterForm, LoginForm
-from hospital import db
+from hospital import db, bcrypt
 from flask_login import login_user
 
 
 @app.route('/')
 @app.route('/', methods=['GET','POST'])
 def inicio():
+    print('hola')
     return render_template('index.html')
 
 
@@ -49,22 +51,25 @@ def conocenos():
 
     
 
-@app.route('/login', methods = ["GET","POST"])
+@app.route('/login', methods = ['GET','POST'])
 def Login():
 
-    form=LoginForm()
-
-    if form.validate_on_submit():
-        attempted_user= User.query.get.filter_by(documento=form.documento.data).first()
-        if attempted_user and attempted_user.check_password_correction(
-                                attempted_password=form.password.data):
+    login_form=LoginForm()
+    
+    if login_form.validate_on_submit():
+        attempted_user = User.query.filter_by(documento=login_form.documento.data).first()
+        if attempted_user and attempted_user.check_password_correction(attempted_password=login_form.password.data):
             login_user(attempted_user)
-            flash(f'Ingreso exitoso como: {attempted_user.documento}', category='success')
-            return redirect (url_for('inicio'))
+            flash(f'Ingreso exitoso como: {attempted_user.apellidos}, {attempted_user.nombres}', category='success')
+            return redirect(url_for('dashboard'))
         else:
-            flash('El usuario y contraseña no coinciden. Por favor intente de nuevo.', category='danger')
+            flash('El documento y la contraseña no coinciden. Por favor intente de nuevo', category='danger')
+  
+    return  render_template("/login.html", login_form=login_form)
 
-    return  render_template("/login.html", form=form) 
+@app.route('/dashboard', methods=['GET','POST'])
+def dashboard():
+    return render_template('dashboard.html')
 
 
 

@@ -10,5 +10,7 @@ app.config['SECRET_KEY'] = 'ec9439cfc6c796ae2029594d'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt()
 login_manager = LoginManager(app)
+login_manager.login_view='login'
+
 
 from hospital import routes

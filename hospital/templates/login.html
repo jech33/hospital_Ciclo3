@@ -33,19 +33,24 @@
         <div class="panel second-column">
             <h2 class="panel2-text login">Ingrese</h2>
             <h3 class="panel2-text register">O <br> <a class="link-registro" href="/registro">Regístrese</a> para continuar</h3>
+
+            
+
             <form method="POST" class="form-register">
 
-                <p class="label">{{ form.documento.label() }}</p>
-                {{ form.documento(placeholder="Sus nombres", id="user", class="input-text") }}
+                {{ login_form.hidden_tag() }}
+
+                <p class="label">{{ login_form.documento.label() }}</p>
+                {{ login_form.documento(placeholder="Sus nombres", id="user", class="input-text") }}
     
-                <p class="label">{{ form.password.label() }}</p>
-                {{ form.password(placeholder="Sus apellidos", id="apellidos", class="input-text") }}
+                <p class="label">{{ login_form.password.label() }}</p>
+                {{ login_form.password(placeholder="Sus apellidos", id="apellidos", class="input-text") }}
                 
                 <br>
 
                 <br>
     
-                {{ form.submit(class="btn btn-lg btn-block btn-primary submit-button") }}
+                {{ login_form.submit(class="btn btn-lg btn-block btn-primary submit-button") }}
 
 
             </form>

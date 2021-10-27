@@ -15,6 +15,8 @@ class RegisterForm(FlaskForm):
         if user:
             raise ValidationError('El correo ya se encuentra registrado')
 
+            
+
     nombres=StringField(label='Nombres:',validators=[DataRequired()])
     apellidos=StringField(label='Apellidos',validators=[DataRequired()])
     email=StringField(label='Email:',validators=[Email(),DataRequired()])
