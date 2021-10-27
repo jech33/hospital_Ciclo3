@@ -42,7 +42,7 @@ def register_page():
 
 @app.route('/conocenos', methods=['GET'])
 def conocenos():
-    return render_template('conocenos.html')
+    return render_template('Conocenos.html')
 
     
 
