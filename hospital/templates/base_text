@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block styles %}
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+
+
+{% endblock %}

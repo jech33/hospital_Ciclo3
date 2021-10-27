@@ -16,7 +16,18 @@ Dashboard
     
 <body>
 
-    Estas logueado 
+    {% if current_user.is_authenticated %}
+        <h1 style="color: black;">Bienvenido: <span>{{ current_user.apellidos }}, {{ current_user.nombres }}</span></h1>
+
+    {% else %}
+
+        <h1>Bienvenido, <span>{{ current_user.apellidos }}, {{ current_user.nombres }}</span></h1>
+    {% endif %}
+
+
+    
+    
+    <a href="{{ url_for('logout_page') }}">Cerrar Sesión</a>
 
 </body>
 

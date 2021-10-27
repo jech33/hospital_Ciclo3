@@ -6,13 +6,12 @@ from flask import render_template, redirect, url_for, flash, get_flashed_message
 from hospital.models import Citas, User
 from hospital.forms import CitasForm, RegisterForm, LoginForm
 from hospital import db, bcrypt
-from flask_login import login_user
+from flask_login import login_user, logout_user, login_required
 
 
-@app.route('/')
+
 @app.route('/', methods=['GET','POST'])
 def inicio():
-    print('hola')
     return render_template('index.html')
 
 
@@ -68,13 +67,27 @@ def Login():
     return  render_template("/login.html", login_form=login_form)
 
 @app.route('/dashboard', methods=['GET','POST'])
+@login_required
 def dashboard():
-    return render_template('dashboard.html')
+
+    #nombres=User.query.filter_by(documento=login_form.documento.data).first()
+    #apellidos=User.query.filter_by(documento=login_form.documento.data).first()
+    
+    return render_template('dashboard.html') #,nombres=nombres, apellidos=apellidos)
+
+
+
+@app.route('/logout')
+def logout_page():
+    logout_user()
+    flash('Se ha cerrado la sesión', category='info')
+    return redirect(url_for('inicio'))
 
 
 
 
 @app.route('/citas', methods=['GET','POST'])
+@login_required
 def citas():
     citas_form=CitasForm()
     if citas_form.validate_on_submit():
@@ -168,3 +181,4 @@ def editar_2():
 def Citas_4():
     return  "Pagina de Citas "
 #crear, eliminar, editar 
+
