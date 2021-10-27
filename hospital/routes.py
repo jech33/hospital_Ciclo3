@@ -59,7 +59,7 @@ def Login():
         if attempted_user and attempted_user.check_password_correction(
                                 attempted_password=form.password.data):
             login_user(attempted_user)
-            flash(f'Ingreso exitoso como: {attempted_user.documento}')
+            flash(f'Ingreso exitoso como: {attempted_user.documento}', category='success')
             return redirect (url_for('inicio'))
         else:
             flash('El usuario y contraseña no coinciden. Por favor intente de nuevo.', category='danger')
