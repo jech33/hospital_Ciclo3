@@ -4,13 +4,19 @@ from flask.helpers import flash
 from flask_wtf import form
 from sqlalchemy.sql.elements import RollbackToSavepointClause
 from hospital import app
-from flask import render_template, redirect, url_for, flash, get_flashed_messages
+from flask import render_template, redirect, url_for, flash, get_flashed_messages, request, session
 from hospital.models import User
 from hospital.models import Citas
 from hospital.forms import CitasForm, RegisterForm, LoginForm, Busqueda
 from hospital import db, bcrypt
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy import or_
+
+def search(criterio):
+
+    usuarios=User.query.filter(or_(User.nombres==criterio,User.apellidos==criterio,User.documento==criterio))
+    
+    return usuarios
 
 
 
@@ -110,28 +116,20 @@ def citas():
 @login_required
 def busqueda_usuario(): 
 
-    busqueda=Busqueda()
+    busqueda = Busqueda()
 
-    if busqueda.validate_on_submit():
-        
-        criterio=busqueda.barra.data
-        
-        lista= User.query.filter(or_(User.nombres==criterio,User.apellidos==criterio,User.documento==criterio))
+    if request.method == "POST":
+        query = request.busqueda["query"]
+        results = search(query)
+        session["results"] = results
+        session["query"] = query
 
-        if lista != []:
-            for item in lista:
-                    print(item.apellidos+', '+item.nombres)
-        else:
-            print('no se encontraron resultados para su búsqueda')
+        return redirect(url_for("busqueda_usuario"))
 
-        
-    return render_template('busqueda_usuario.html',busqueda=busqueda)
+    return render_template('busqueda_usuario.html',busqueda=busqueda, list=session["results"], query=session["query"])
 
 
 
-
-
-    
 
 
 @app.route('/Quienes_Somos', methods=['GET','POST'])

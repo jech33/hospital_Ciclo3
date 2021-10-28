@@ -24,12 +24,12 @@
 {% block content %}
 
 
-    <form method="POST" class="form-register">
+    <form method="POST" class="form-register" action="/busqueda_usuario">
 
         {{ busqueda.hidden_tag() }}
 
         <p class="label">{{ busqueda.barra.label() }}</p>
-        {{ busqueda.barra() }}
+        {{ busqueda.barra( name = 'query', value = '{{query}}')  }}
 
 
         {{ busqueda.buscar(class="btn btn-lg btn-block btn-primary submit-button") }}
@@ -38,6 +38,22 @@
 
 
     </form>
+
+
+    <div>
+
+        {% for item in list %}
+
+
+        <h3><a href="">{{item.apellidos}}, {{item.nombres}}</a></h3>
+        <p>{{item.documento}}</p>
+        <p>{{item.email}}</p>
+
+        {% endfor %}
+
+
+
+    </div>
 
     
 
