@@ -4,6 +4,8 @@ from wtforms.fields.core import DateField, IntegerField, SelectField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
 from hospital.models import User
 
+
+
 lista_medicos=['Medico 1','Medico 2','Medico 3']
 lista_horas=['8:00 AM - 9:00 AM', '9:00 AM - 10:00 AM','10:00 AM - 11:00 AM','11:00 AM - 12:00 PM','12:00 PM - 1:00 PM','1:00 PM - 2:00 PM','2:00 PM - 3:00 PM','3:00 PM - 4:00 PM','4:00 PM - 5:00 PM','5:00 PM - 6:00 PM']
 
@@ -26,7 +28,7 @@ class RegisterForm(FlaskForm):
     submit=SubmitField(label='CREAR CUENTA')
 
 class CitasForm(FlaskForm):
-    nombres=StringField(label='Su nombre', validators=[DataRequired()])
+    #paciente=StringField(label='Su nombre', validators=[DataRequired()])
     medico=SelectField('Escoja un medico',choices=lista_medicos, validators=[DataRequired()])
     fecha=StringField(label='Escoja el dia',validators=[DataRequired()])
     #hora=StringField(label='Escoja la hora')

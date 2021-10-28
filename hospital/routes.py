@@ -3,10 +3,11 @@ from flask.helpers import flash
 from flask_wtf import form
 from hospital import app
 from flask import render_template, redirect, url_for, flash, get_flashed_messages
-from hospital.models import Citas, User
+from hospital.models import User
+from hospital.models import Citas
 from hospital.forms import CitasForm, RegisterForm, LoginForm
 from hospital import db, bcrypt
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 
 
 
@@ -90,17 +91,19 @@ def logout_page():
 @login_required
 def citas():
     citas_form=CitasForm()
+    user_paciente=current_user.nombres
+
     if citas_form.validate_on_submit():
-        cita_a_crear = Citas(
-                            paciente=citas_form.nombres.data,
-                            medico=citas_form.medico.data,
-                            fecha=citas_form.fecha.data,
-                            hora=citas_form.hora.data)
+        cita_a_crear = Citas(paciente=user_paciente,medico=citas_form.medico.data, fecha=citas_form.fecha.data,hora=citas_form.hora.data)
         db.session.add(cita_a_crear)
         db.session.commit()
+        
         return redirect(url_for('inicio'))
 
     return render_template('citas.html', citas_form=citas_form )
+
+
+
 
 @app.route('/Quienes_Somos', methods=['GET','POST'])
 def quienesSomos():
@@ -118,13 +121,10 @@ def faq():
 
 
 @app.route('/perfil_paciente', methods = ["GET"])
-def Paciente():
+def pacientee():
     return  render_template("/Perfil_pacientes.html")
 
-@app.route('/perfil_paciente/citas', methods = ["GET","POST"])
-def Citas():
-    return  render_template("/Citas.html")
-#Crear hmtl para crear, y consultar, ver citas 
+
 
 @app.route('/perfil_paciente/comentarios', methods = ["GET","POST"])
 def Comentarios():
