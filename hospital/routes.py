@@ -1,19 +1,23 @@
+from operator import or_
 import bcrypt
 from flask.helpers import flash
 from flask_wtf import form
+from sqlalchemy.sql.elements import RollbackToSavepointClause
 from hospital import app
 from flask import render_template, redirect, url_for, flash, get_flashed_messages
 from hospital.models import User
 from hospital.models import Citas
-from hospital.forms import CitasForm, RegisterForm, LoginForm
+from hospital.forms import CitasForm, RegisterForm, LoginForm, Busqueda
 from hospital import db, bcrypt
 from flask_login import login_user, logout_user, login_required, current_user
+from sqlalchemy import or_
 
 
 
 @app.route('/', methods=['GET','POST'])
 def inicio():
     return render_template('index.html')
+    
 
 
 @app.route('/contacto', methods=['GET','POST'])
@@ -34,7 +38,7 @@ def register_page():
             password_secure= form.password1.data)
         db.session.add(user_to_create)
         db.session.commit()
-        return redirect(url_for('inicio'))
+        return redirect(url_for('register_page'))
 
     if form.errors !={}:
         for err_msg in form.errors.values():
@@ -68,11 +72,10 @@ def Login():
     return  render_template("/login.html", login_form=login_form)
 
 @app.route('/dashboard', methods=['GET','POST'])
-@login_required
 def dashboard():
 
     #nombres=User.query.filter_by(documento=login_form.documento.data).first()
-    #apellidos=User.query.filter_by(documento=login_form.documento.data).first()
+    #apellidos=User.filter_by(documento=login_form.documento.data).first()
     
     return render_template('dashboard.html') #,nombres=nombres, apellidos=apellidos)
 
@@ -103,6 +106,32 @@ def citas():
     return render_template('citas.html', citas_form=citas_form )
 
 
+@app.route('/busqueda_usuario', methods=['GET','POST'])
+@login_required
+def busqueda_usuario(): 
+
+    busqueda=Busqueda()
+
+    if busqueda.validate_on_submit():
+        
+        criterio=busqueda.barra.data
+        
+        lista= User.query.filter(or_(User.nombres==criterio,User.apellidos==criterio,User.documento==criterio))
+
+        if lista != []:
+            for item in lista:
+                    print(item.apellidos+', '+item.nombres)
+        else:
+            print('no se encontraron resultados para su búsqueda')
+
+        
+    return render_template('busqueda_usuario.html',busqueda=busqueda)
+
+
+
+
+
+    
 
 
 @app.route('/Quienes_Somos', methods=['GET','POST'])

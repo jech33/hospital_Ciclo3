@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from sqlalchemy.sql.sqltypes import String
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.fields.core import DateField, IntegerField, SelectField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
@@ -39,3 +40,7 @@ class LoginForm(FlaskForm):
     documento=StringField(label='Su número de documento:', validators=[DataRequired()])
     password=PasswordField(label='Ingrese su contraseña:', validators=[DataRequired()])
     submit = SubmitField(label='Iniciar sesión')
+
+class Busqueda(FlaskForm):
+    barra=StringField(label='Buscar', validators=[DataRequired()])
+    buscar=SubmitField(label='Buscar')

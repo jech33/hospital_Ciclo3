@@ -21,15 +21,17 @@ Dashboard
 
     {% else %}
 
-        <h1>Bienvenido, <span>{{ current_user.apellidos }}, {{ current_user.nombres }}</span></h1>
+        <h1>Bienvenido, no autenticado</h1>
     {% endif %}
 
+    <a href="{{ url_for('inicio') }}">Inicio</a>
     <a href="{{ url_for('citas') }}">Agenda tu cita</a>
 
 
     
     
     <a href="{{ url_for('logout_page') }}">Cerrar Sesión</a>
+    
 
 </body>
 
