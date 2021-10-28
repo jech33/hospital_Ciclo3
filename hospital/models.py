@@ -35,6 +35,7 @@ class User(db.Model, UserMixin):
 
 
 class Citas(db.Model):
+    
     id = db.Column(db.Integer(), primary_key=True)
     paciente=db.Column(db.String(length=50), nullable=False)
     medico=db.Column(db.String(length=50), nullable=False)

@@ -24,6 +24,8 @@ Dashboard
         <h1>Bienvenido, <span>{{ current_user.apellidos }}, {{ current_user.nombres }}</span></h1>
     {% endif %}
 
+    <a href="{{ url_for('citas') }}">Agenda tu cita</a>
+
 
     
     

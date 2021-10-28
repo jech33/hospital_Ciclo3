@@ -26,8 +26,7 @@ class RegisterForm(FlaskForm):
     submit=SubmitField(label='CREAR CUENTA')
 
 class CitasForm(FlaskForm):
-    paciente=StringField(label='Nombre:',validators=[DataRequired()])
-    #medico=StringField(label='Medico:')
+    nombres=StringField(label='Su nombre', validators=[DataRequired()])
     medico=SelectField('Escoja un medico',choices=lista_medicos, validators=[DataRequired()])
     fecha=StringField(label='Escoja el dia',validators=[DataRequired()])
     #hora=StringField(label='Escoja la hora')

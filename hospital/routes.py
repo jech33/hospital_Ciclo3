@@ -91,7 +91,8 @@ def logout_page():
 def citas():
     citas_form=CitasForm()
     if citas_form.validate_on_submit():
-        cita_a_crear = Citas(paciente=citas_form.paciente.data,
+        cita_a_crear = Citas(
+                            paciente=citas_form.nombres.data,
                             medico=citas_form.medico.data,
                             fecha=citas_form.fecha.data,
                             hora=citas_form.hora.data)

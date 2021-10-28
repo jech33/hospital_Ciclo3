@@ -327,7 +327,18 @@
             <a href="#facility">Instalaciones</a>
             <a href="#review">Certificaciones</a>
             <a href="conocenos">Conócenos</a>
-            <a href="login">Iniciar Sesión</a>
+
+            {% if current_user.is_autheticated %}
+
+              <a href="{{ url_for('dashboard') }}">Iniciar Sesión</a>  
+
+            {% else %}
+
+              <a href="{{ url_for('Login') }}">lalala</a>
+            
+            {% endif %}
+            
+
           </div>
 
           <div class="col-md-4 text-center" data-aos="fade-left">
