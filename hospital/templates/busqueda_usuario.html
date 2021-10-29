@@ -26,13 +26,8 @@
 
     <form method="POST" class="form-register" action="/busqueda_usuario">
 
-        {{ busqueda.hidden_tag() }}
-
-        <p class="label">{{ busqueda.barra.label() }}</p>
-        {{ busqueda.barra( name = 'query', value = '{{query}}')  }}
-
-
-        {{ busqueda.buscar(class="btn btn-lg btn-block btn-primary submit-button") }}
+        <input type="text" name="query", placeholder="ID, correo o apellidos", value="{{query}}" >
+        <input type="submit" label="buscar">
 
     
 
@@ -42,7 +37,7 @@
 
     <div>
 
-        {% for item in list %}
+        {% for item in results %}
 
 
         <h3><a href="">{{item.apellidos}}, {{item.nombres}}</a></h3>

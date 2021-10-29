@@ -12,12 +12,6 @@ from hospital import db, bcrypt
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy import or_
 
-def search(criterio):
-
-    usuarios=User.query.filter(or_(User.nombres==criterio,User.apellidos==criterio,User.documento==criterio))
-    
-    return usuarios
-
 
 
 @app.route('/', methods=['GET','POST'])
@@ -116,17 +110,15 @@ def citas():
 @login_required
 def busqueda_usuario(): 
 
-    busqueda = Busqueda()
-
     if request.method == "POST":
-        query = request.busqueda["query"]
-        results = search(query)
+        query=request.form["query"]
+        results=list(User.query.filter(or_(User.nombres==query,User.apellidos==query,User.documento==query)))
+        print(results[0].apellidos)
         session["results"] = results
         session["query"] = query
-
         return redirect(url_for("busqueda_usuario"))
 
-    return render_template('busqueda_usuario.html',busqueda=busqueda, list=session["results"], query=session["query"])
+    return render_template('busqueda_usuario.html', results=session["results"], query=session["query"])
 
 
 
