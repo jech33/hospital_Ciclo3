@@ -22,8 +22,15 @@
 
 
 {% block content %}
+  
+  <h1>Agenda tu cita</h1>
+  <h2>Tu salud y tu tiempo son lo más importante, por eso te facilitamos las cosas.</h1>
 
   <form method="POST" class="form-register">
+
+    <div class="container">
+      <h2 class="back"><a href="{{ url_for('dashboard') }}" class="back_a" a>Regresar al dashboard</a></h2>
+    </div>
 
     {{ citas_form.hidden_tag() }}
 

@@ -1,0 +1,160 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+.hospital{
+    padding: 2rem;
+    text-align: center;
+    background-color: #5271ff;
+}
+
+
+h1{
+    
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+
+.busqueda{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    margin-top: 40px;
+    margin-bottom: 0px;
+}
+
+.search-bar{
+    
+    font-size: 20px;
+    width: 800px;
+    padding: 0.3rem 0.3rem 0.3rem 0.5rem;
+    border: none;
+    text-align: center;
+
+    
+}
+
+.search-border{
+    border: solid black 2px;
+    padding: 0.2rem 1rem 0.2rem 0.2rem;
+    border-radius: 10px;
+}
+
+.search-button{
+    font-size: 20px;
+    color: #5271ff;
+    
+}
+
+.search-bar:focus{
+    outline: none;
+}
+
+
+
+.n-results{
+    width:fit-content;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+
+
+.name{
+    text-decoration: none;
+    color: #5271ff;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.name:hover{
+    text-decoration:underline;
+    color: #5211ff;
+    transition: color 10s;
+}
+
+
+
+.fa-edit{
+    color: #5271ff;
+    font-size: 20px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.apellidos{
+    text-transform: uppercase;
+}
+
+.results-section{
+    width: 30%;
+    height: 1000px;
+    margin:0 auto;
+}
+
+.result-top{
+    width: 100%;
+    display: flex;
+    justify-content:space-between;
+    margin-bottom: 0.6rem;
+}
+
+.result{
+    padding: 1rem;
+}
+
+button{
+    border-style: none;
+    background-color: #fff;
+    
+
+}
+
+.fas{
+    font-size: 20px;
+}
+
+
+.container_resultados{
+
+    margin-bottom: 2rem;
+}
+
+a:visited{
+
+  color: #5271ff;
+    
+}
+
+.back_a{
+    text-decoration: none;
+    color: #5271ff;
+}
+
+.back_a:hover{
+    text-decoration: underline;
+}
+
+.back{
+    font-size: 15px;
+    margin: 0 auto;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    margin-bottom: -70px;
+}

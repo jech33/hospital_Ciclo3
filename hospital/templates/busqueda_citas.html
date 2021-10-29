@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Busqueda de citas
+
+
+{% endblock %}
+
+
+
+
+
+{% block styles %}
+
+    <link rel="stylesheet" href="static/busqueda_citas.css" />
+    
+
+{% endblock %}
+
+
+
+
+
+{% block content %}
+
+    <h1 class="hospital"><span class="head-icon"><i class="fas fa-hospital"></i></span> Hospital Camino Bosque de María</h1>
+        
+    <div class="container">
+        <h2 class="back"><a href="{{ url_for('dashboard') }}" class="back_a" a>Regresar al dashboard</a></h2>
+    </div>
+
+    <div class="busqueda">
+
+        <form action="/busqueda_citas" method="POST">
+        
+            <form action="#" method="POST">
+                <div class="search-border">
+                    <input name="query_paciente" type="text" placeholder="Nombre del paciente" class="search-bar" value="{{query_paciente}}">
+                    <input name="query_medico" type="text" placeholder="Nombre del doctor" class="search-bar" value="{{query_medico}}">
+                    <input name="query_fecha" type="text" placeholder="Fecha de la cita (DD/MM/AAAA)" class="search-bar" value="{{query_fecha}}">
+                    <button type="submit"><a href="" class="search-button"><i class="fas fa-search"></i></a></button>
+                </div>
+            </form>
+        </form>
+            
+    </div>
+
+    
+
+
+
+    
+
+    <div class="results-section">
+
+        {% if results != [] %}
+
+            {% if length!=total_length %}
+
+            <h2 class="n-results">Se han encontrado {{length}} resultados para "{{query_paciente}}" / "{{query_medico}}" / "{{query_fecha}}"</h2>
+
+
+            {% endif %}
+
+
+
+            
+
+            {% for item in results %}
+
+
+                <div class="container_resultados">
+                    <div class="result-top"><a href="" class="name">{{item.id}} - Cita</a> <a href=""><a class="fas fa-trash-alt" href="/borrar_cita/{{ item.id }}"></a></a></div>
+                    <h3 class="user-info"><span class="bold">Paciente:</span> {{item.paciente}} </h3>
+                    <h3 class="user-info"><span class="bold">Médico:</span> {{item.medico}} </h3>
+                    <h3 class="user-info"><span class="bold">Fecha:</span> {{item.fecha}} </h3>
+                </div>
+                
+
+
+            {% endfor %}
+
+
+        {% else %}
+
+            <h2 class="n-results">No se han encontrado resultados para la búsqueda de "{{query_paciente}}, {{query_medico}}, {{query_fecha}}"</h2>
+
+        {% endif %}
+
+    </div>
+
+    
+
+
+{% endblock %}

@@ -30,10 +30,10 @@ class RegisterForm(FlaskForm):
 
 class CitasForm(FlaskForm):
     #paciente=StringField(label='Su nombre', validators=[DataRequired()])
-    medico=SelectField('Escoja un medico',choices=lista_medicos, validators=[DataRequired()])
-    fecha=StringField(label='Escoja el dia',validators=[DataRequired()])
+    medico=SelectField('Escoge tu médico de preferencia',choices=lista_medicos, validators=[DataRequired()])
+    fecha=StringField(label='¿Qué día necesitas tu cita?',render_kw={"placeholder": "DD/MM/AAAA"},validators=[DataRequired()])
     #hora=StringField(label='Escoja la hora')
-    hora=SelectField('Escoja la hora',choices=lista_horas,validators=[DataRequired()])
+    hora=SelectField('¿A qué hora necesitas tu cita?',choices=lista_horas,validators=[DataRequired()])
     submit = SubmitField(label='Agendar cita')
 
 class LoginForm(FlaskForm):

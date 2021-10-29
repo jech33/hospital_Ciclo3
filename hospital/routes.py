@@ -13,12 +13,17 @@ from hospital.forms import CitasForm, RegisterForm, LoginForm, Busqueda
 from hospital import db, bcrypt
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy import or_
-from hospital.search import search
+
+
 
 
 
 @app.route('/', methods=['GET','POST'])
 def inicio():
+    if current_user.is_authenticated:
+        print('Autenticado')
+    else:
+        print('No autenticado')
     return render_template('index.html')
     
 
@@ -30,6 +35,8 @@ def contacto():
 
 @app.route('/registro', methods=['GET','POST'])
 def register_page():
+
+
     form = RegisterForm()
 
     if form.validate_on_submit():
@@ -41,11 +48,12 @@ def register_page():
             password_secure= form.password1.data)
         db.session.add(user_to_create)
         db.session.commit()
-        return redirect(url_for('dashboard'))
+        flash(f'Usuario creado exitosamente. Por favor ingrese.', category='succes')
+        return redirect(url_for('Login'))
 
     if form.errors !={}:
         for err_msg in form.errors.values():
-            flash(f'Hubo un error creando al usuario: {err_msg}')
+            flash(f'Hubo un error creando al usuario: {err_msg}', category='danger')
 
     return render_template('registro.html', form=form)
 
@@ -74,7 +82,9 @@ def Login():
   
     return  render_template("/login.html", login_form=login_form)
 
+
 @app.route('/dashboard', methods=['GET','POST'])
+@login_required
 def dashboard():
 
     #nombres=User.query.filter_by(documento=login_form.documento.data).first()
@@ -97,31 +107,73 @@ def logout_page():
 @login_required
 def citas():
     citas_form=CitasForm()
-    user_paciente=current_user.nombres
+    user_paciente=current_user.apellidos+' '+current_user.nombres
 
     if citas_form.validate_on_submit():
-        cita_a_crear = Citas(paciente=user_paciente,medico=citas_form.medico.data, fecha=citas_form.fecha.data,hora=citas_form.hora.data)
+        print(user_paciente)
+        cita_a_crear = Citas(paciente=user_paciente,
+                            medico=citas_form.medico.data, 
+                            fecha=citas_form.fecha.data,
+                            hora=citas_form.hora.data)
         db.session.add(cita_a_crear)
         db.session.commit()
-        
-        return redirect(url_for('inicio'))
+        flash('Cita agendada exitosamente')
+        return redirect(url_for('dashboard'))
 
     return render_template('citas.html', citas_form=citas_form )
+
 
 
 @app.route('/busqueda_usuario', methods=['GET','POST'])
 @login_required
 def busqueda_usuario():
 
+    usuarios = User.query.filter().all()
+    if request.method == 'POST' and 'query' in request.form:
+        tag = request.form['query']
+        seek = "{}%".format(tag)
+        usuarios = User.query.filter(or_(User.nombres.like(seek), 
+            User.apellidos.like(seek),
+            User.documento.like(seek),
+            User.email.like(seek),
+            User.id.like(seek))).all()
+        list_lenght=len(usuarios)
+        total_length=len(User.query.all())
+            
+        return render_template('busqueda_usuario.html', results=usuarios, query=tag, length=list_lenght, total_length=total_length)
+    return render_template('busqueda_usuario.html', results=usuarios)
 
-    if request.method == "POST":
-        query=request.form["query"]
-        results=search(query)
-        session["results"] = results
-        session["query"] = query
-        return redirect(url_for("busqueda_usuario"))
 
-    return render_template('busqueda_usuario.html', results=session["results"], query=session["query"])
+@app.route('/busqueda_citas', methods=['GET','POST'])
+@login_required
+def busqueda_citas():
+
+    citas = Citas.query.filter().all()
+    if request.method == 'POST' and 'query_paciente' in request.form:
+        tag_paciente = request.form['query_paciente']
+        tag_medico = request.form['query_medico']
+        tag_fecha = request.form['query_fecha']
+        print(tag_paciente,tag_medico,tag_fecha)
+        seek = ["{}%".format(tag_paciente),"{}%".format(tag_medico), "{}%".format(tag_fecha)]
+        citas = Citas.query.filter(Citas.paciente.like(seek[0]), 
+                                    Citas.medico.like(seek[1]),
+                                    Citas.fecha.like(seek[2])).all()
+        list_lenght=len(citas)
+        total_length=len(Citas.query.all())
+            
+        return render_template('busqueda_citas.html', results=citas, query_paciente=tag_paciente, query_medico=tag_medico, query_fecha=tag_fecha, length=list_lenght, total_length=total_length)
+    return render_template('busqueda_citas.html', results=citas)
+
+
+@app.route('/mis_citas')
+@login_required
+def mis_citas():
+    paciente_a_buscar=current_user.apellidos+' '+current_user.nombres
+    citas=Citas.query.filter_by(paciente=paciente_a_buscar).all()
+    length=len(citas)
+    return render_template('mis_citas.html', citas=citas,length=length)
+
+
 
 
 @app.route('/borrar/<int:id>')
@@ -131,10 +183,24 @@ def delete(id):
     try:
         db.session.delete(usuario_a_borrar)
         db.session.commit()
+        flash('Usuario eliminado exitosamente')
         return redirect('/busqueda_usuario')
     
     except:
-        return "Hubo un error eliminando al uuuuusuario"
+        return "Hubo un error eliminando al usuario"
+
+@app.route('/borrar_cita/<int:id>')
+def delete_cita(id):
+    cita_a_borrar=Citas.query.get_or_404(id)
+
+    try:
+        db.session.delete(cita_a_borrar)
+        db.session.commit()
+        flash('Cita eliminada exitosamente')
+        return redirect('/busqueda_citas')
+    
+    except:
+        return "Hubo un error eliminando la cita"
 
 
 

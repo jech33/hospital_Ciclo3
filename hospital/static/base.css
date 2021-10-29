@@ -21,3 +21,7 @@ h1{
     text-decoration: none;
     
 }
+
+.cap{
+    text-transform: capitalize;
+}

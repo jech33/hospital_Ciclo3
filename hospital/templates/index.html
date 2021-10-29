@@ -64,14 +64,16 @@
             <li><a href="#review">Certificaciones</a></li>
             <li><a href="conocenos">Conócenos</a></li>
 
-            {% if current_user.is_autheticated %}
+            {% if current_user.is_authenticated %}
 
-              <li><a href="{{ url_for('dashboard') }}">Iniciar Sesión</a></li>    
+              <li><a href="{{ url_for('dashboard') }}">Perfil</a></li>    
 
             {% else %}
               <li><a href="{{ url_for('Login') }}">Iniciar sesión</a></li>
 
             {% endif %}
+
+            
 
           </ul>
         </nav>

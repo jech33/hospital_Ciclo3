@@ -17,7 +17,7 @@ Dashboard
 <body>
 
     {% if current_user.is_authenticated %}
-        <h1 style="color: black;">Bienvenido: <span>{{ current_user.apellidos }}, {{ current_user.nombres }}</span></h1>
+        <h1>Bienvenido: <span>{{ current_user.apellidos }}, {{ current_user.nombres }}</span></h1>
 
     {% else %}
 
@@ -26,10 +26,9 @@ Dashboard
 
     <a href="{{ url_for('inicio') }}">Inicio</a>
     <a href="{{ url_for('citas') }}">Agenda tu cita</a>
-
-
-    
-    
+    <a href="{{ url_for('busqueda_usuario') }}">Buscar usuarios</a>
+    <a href="{{ url_for('busqueda_citas') }}">Buscar citas</a>
+    <a href="{{ url_for('mis_citas') }}">Mis citas</a>
     <a href="{{ url_for('logout_page') }}">Cerrar Sesión</a>
     
 
