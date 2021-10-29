@@ -15,7 +15,7 @@ def search(query):
         apellidos=i.apellidos
         documento=i.documento
         email=i.email
-        id=str(i.id)
+        id=i.id
         lista_temp=[apellidos,nombres,documento,email,id]
         lista.append(lista_temp)
 

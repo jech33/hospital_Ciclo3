@@ -111,7 +111,10 @@ def citas():
 
 @app.route('/busqueda_usuario', methods=['GET','POST'])
 @login_required
-def busqueda_usuario(): 
+def busqueda_usuario():
+
+    for key in request.session.keys():
+        del request.session[key]
 
 
     if request.method == "POST":
@@ -124,6 +127,17 @@ def busqueda_usuario():
     return render_template('busqueda_usuario.html', results=session["results"], query=session["query"])
 
 
+@app.route('/borrar/<int:id>')
+def delete(id):
+    usuario_a_borrar=User.query.get_or_404(id)
+
+    try:
+        db.session.delete(usuario_a_borrar)
+        db.session.commit()
+        return redirect('/busqueda_usuario')
+    
+    except:
+        return "Hubo un error eliminando al usuario"
 
 
 
