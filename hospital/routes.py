@@ -113,9 +113,6 @@ def citas():
 @login_required
 def busqueda_usuario():
 
-    for key in request.session.keys():
-        del request.session[key]
-
 
     if request.method == "POST":
         query=request.form["query"]
