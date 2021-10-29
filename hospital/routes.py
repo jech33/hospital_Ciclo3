@@ -113,15 +113,17 @@ def citas():
 @login_required
 def busqueda_usuario():
 
-
-    if request.method == "POST":
-        query=request.form["query"]
-        results=search(query)
-        session["results"] = results
-        session["query"] = query
-        return redirect(url_for("busqueda_usuario"))
-
-    return render_template('busqueda_usuario.html', results=session["results"], query=session["query"])
+    usuarios = User.query.filter().all()
+    if request.method == 'POST' and 'query' in request.form:
+        tag = request.form['query']
+        seek = "{}%".format(tag)
+        usuarios = User.query.filter(or_(User.nombres.like(seek), 
+            User.apellidos.like(seek),
+            User.documento.like(seek),
+            User.email.like(seek),
+            User.id.like(seek))).all()
+        return render_template('busqueda_usuario.html', usuarios=usuarios, query=tag)
+    return render_template('busqueda_usuario.html', usuarios=usuarios)
 
 
 @app.route('/borrar/<int:id>')
