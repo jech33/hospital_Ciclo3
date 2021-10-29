@@ -2,7 +2,9 @@ from operator import or_
 import bcrypt
 from flask.helpers import flash
 from flask_wtf import form
+from sqlalchemy.orm import query
 from sqlalchemy.sql.elements import RollbackToSavepointClause
+from sqlalchemy.sql.expression import null
 from hospital import app
 from flask import render_template, redirect, url_for, flash, get_flashed_messages, request, session
 from hospital.models import User
@@ -11,6 +13,7 @@ from hospital.forms import CitasForm, RegisterForm, LoginForm, Busqueda
 from hospital import db, bcrypt
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy import or_
+from hospital.search import search
 
 
 
@@ -110,10 +113,10 @@ def citas():
 @login_required
 def busqueda_usuario(): 
 
+
     if request.method == "POST":
         query=request.form["query"]
-        results=list(User.query.filter(or_(User.nombres==query,User.apellidos==query,User.documento==query)))
-        print(results[0].apellidos)
+        results=search(query)
         session["results"] = results
         session["query"] = query
         return redirect(url_for("busqueda_usuario"))

@@ -24,27 +24,45 @@
 {% block content %}
 
 
-    <form method="POST" class="form-register" action="/busqueda_usuario">
-
-        <input type="text" name="query", placeholder="ID, correo o apellidos", value="{{query}}" >
-        <input type="submit" label="buscar">
-
-    
-
-
+    <form action="/busqueda_usuario" method="POST">
+        <form action="#" method="POST">
+            <div class="searchbar">
+                <input name="query" type="text" placeholder="Search the web" class="bar" value="{{query}}">
+                <input type="submit" value="Buscar">
+            </div>
+        </form>
     </form>
 
 
     <div>
 
-        {% for item in results %}
+        {% if results != [] %}
+
+            {% for item in results %}
 
 
-        <h3><a href="">{{item.apellidos}}, {{item.nombres}}</a></h3>
-        <p>{{item.documento}}</p>
-        <p>{{item.email}}</p>
+                <h3><a href="">{{item[0]}}, {{item[1]}}</a></h3>
+                <p>{{item[2]}}</p>
+                <p>{{item[3]}}</p>
 
-        {% endfor %}
+                <form action="" method="POST">
+                    <input type="submit" value="Eliminar" id="{{ item[4] }}">
+                </form>
+
+            {% endfor %}
+
+
+        {% else %}
+
+            <p>No se encontraron resultados para su búsqueda</p>
+
+        {% endif %}
+
+
+
+        
+
+        
 
 
 
@@ -54,3 +72,4 @@
 
 
 {% endblock %}
+
