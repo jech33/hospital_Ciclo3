@@ -182,7 +182,7 @@ def delete(id):
     try:
         db.session.delete(usuario_a_borrar)
         db.session.commit()
-        flash('Usuario eliminado exitosamente')
+        flash('Usuario eliminado exitosamente', category='success')
         return redirect('/busqueda_usuario')
     
     except:
@@ -197,6 +197,19 @@ def delete_cita(id):
         db.session.commit()
         flash('Cita eliminada exitosamente', category='success')
         return redirect('/busqueda_citas')
+    
+    except:
+        return "Hubo un error eliminando la cita"
+
+@app.route('/borrar_mi_cita/<int:id>')
+def delete_mi_cita(id):
+    cita_a_borrar=Citas.query.get_or_404(id)
+
+    try:
+        db.session.delete(cita_a_borrar)
+        db.session.commit()
+        flash('Cita eliminada exitosamente', category='success')
+        return redirect('/mis_citas')
     
     except:
         return "Hubo un error eliminando la cita"

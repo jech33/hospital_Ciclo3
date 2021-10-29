@@ -36,6 +36,7 @@
                     <th scope="col">Medico</th>
                     <th scope="col">Fecha</th>
                     <th scope="col">Hora</th>
+                    <th scope="col">Acción</th>
                 </tr>
             </thead>
 
@@ -46,6 +47,7 @@
                         <td>{{i.medico}}</td>
                         <td>{{i.fecha}}</td>
                         <td>{{i.hora}}</td>
+                        <td><a class="fas fa-trash-alt" href="/borrar_mi_cita/{{ i.id }}"></a></td>
                     </tr>
 
                 {% endfor %}

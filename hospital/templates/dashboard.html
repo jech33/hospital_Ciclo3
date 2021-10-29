@@ -5,7 +5,7 @@ Dashboard
 
 {% block styles %}
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='holaaa.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap" rel="stylesheet">
 
@@ -17,7 +17,7 @@ Dashboard
 <body>
 
     {% if current_user.is_authenticated %}
-        <h1>Bienvenido: <span>{{ current_user.apellidos }}, {{ current_user.nombres }}</span></h1>
+        <h1>Bienvenido: <span class="cap">{{ current_user.apellidos }}, {{ current_user.nombres }}</span></h1>
 
     {% else %}
 
