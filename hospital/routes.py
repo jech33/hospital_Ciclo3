@@ -134,7 +134,7 @@ def delete(id):
         return redirect('/busqueda_usuario')
     
     except:
-        return "Hubo un error eliminando al usuario"
+        return "Hubo un error eliminando al uuuuusuario"
 
 
 
