@@ -102,7 +102,6 @@ def logout_page():
 
 
 
-
 @app.route('/citas', methods=['GET','POST'])
 @login_required
 def citas():
@@ -117,7 +116,7 @@ def citas():
                             hora=citas_form.hora.data)
         db.session.add(cita_a_crear)
         db.session.commit()
-        flash('Cita agendada exitosamente')
+        flash('Cita agendada exitosamente', category='success')
         return redirect(url_for('dashboard'))
 
     return render_template('citas.html', citas_form=citas_form )
@@ -196,7 +195,7 @@ def delete_cita(id):
     try:
         db.session.delete(cita_a_borrar)
         db.session.commit()
-        flash('Cita eliminada exitosamente')
+        flash('Cita eliminada exitosamente', category='success')
         return redirect('/busqueda_citas')
     
     except:
