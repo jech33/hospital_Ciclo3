@@ -22,9 +22,17 @@
 
 {% block content %}
 
-    <h2>Mis citas</h2>
 
+    <h1 class="hospital" style="color: #fff; font-weight: bold;"><span class="head-icon"><i class="fas fa-hospital"></i></span> Hospital Camino Bosque de María</h1>
+    
+    <div class="container">
     <h2 class="back"><a href="{{ url_for('dashboard') }}" class="back_a" a>Regresar al dashboard</a></h2>
+    </div>
+
+
+    <h2 class="heading">Mis citas</h2>
+
+
 
     {% if length != 0 %}
 
@@ -58,7 +66,7 @@
 
         </table>
 
-        <h3><a href="{{ url_for('citas') }}">Agendar nueva cita</a></h3>
+        <h3 class="cita_nueva"><a href="{{ url_for('citas') }}">Agendar nueva cita</a></h3>
 
     {% else %}
 

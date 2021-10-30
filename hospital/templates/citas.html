@@ -13,7 +13,7 @@
 
 {% block styles %}
 
-
+  <link rel="stylesheet" href="{{url_for('static',filename='citas.css')}}" />
 
 {% endblock %}
 
@@ -22,32 +22,50 @@
 
 
 {% block content %}
+
+  <h1 class="hospital" style="color: #fff; font-weight: bold;"><span class="head-icon"><i class="fas fa-hospital"></i></span> Hospital Camino Bosque de María</h1>
   
-  <h1>Agenda tu cita</h1>
-  <h2>Tu salud y tu tiempo son lo más importante, por eso te facilitamos las cosas.</h1>
+  <div class="container">
+    <h2 class="back"><a href="{{ url_for('dashboard') }}" class="back_a" a>Regresar al dashboard</a></h2>
+  </div>
+
+  <div class="mensaje">
+    <h2>Agenda tu cita</h2>
+    <p>Tu salud y tu tiempo son lo más importante, por eso te facilitamos las cosas.</p>
+  </div>
+
+
 
   <form method="POST" class="form-register">
 
-    <div class="container">
-      <h2 class="back"><a href="{{ url_for('dashboard') }}" class="back_a" a>Regresar al dashboard</a></h2>
-    </div>
+    
 
     {{ citas_form.hidden_tag() }}
 
-    <p class="label">{{ citas_form.medico.label() }}</p>
-    {{ citas_form.medico() }}
+    <div class="container_items">
+      <div class="items">
+        <p class="label">{{ citas_form.medico.label() }}</p>
+        {{ citas_form.medico() }}
+      </div>
+      
+      <div class="items">
+        <p class="label">{{ citas_form.fecha.label() }}</p>
+        {{ citas_form.fecha() }}
+      </div>
 
-    <p class="label">{{ citas_form.fecha.label() }}</p>
-    {{ citas_form.fecha() }}
+      <div class="items">
+        <p class="label">{{ citas_form.hora.label() }}</p>
+        {{ citas_form.hora() }}
+      </div>
+
+      {{ citas_form.submit(class="btn btn-lg btn-block btn-primary submit-button") }}
+
+    </div>
     
-    <p class="label">{{ citas_form.hora.label() }}</p>
-    {{ citas_form.hora() }}
     
-    <br>
 
-    <br>
 
-    {{ citas_form.submit(class="btn btn-lg btn-block btn-primary submit-button") }}
+    
 
 
   </form>

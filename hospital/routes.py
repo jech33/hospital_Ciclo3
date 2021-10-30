@@ -13,6 +13,7 @@ from hospital.forms import CitasForm, RegisterForm, LoginForm, Busqueda
 from hospital import db, bcrypt
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy import or_
+from hospital.roles import roles
 
 
 
@@ -45,6 +46,7 @@ def register_page():
             apellidos= form.apellidos.data,
             email= form.email.data,
             documento= form.documento.data,
+            rol= 2,
             password_secure= form.password1.data)
         db.session.add(user_to_create)
         db.session.commit()
@@ -86,11 +88,11 @@ def Login():
 @app.route('/dashboard', methods=['GET','POST'])
 @login_required
 def dashboard():
+    return roles(current_user.rol)
 
-    #nombres=User.query.filter_by(documento=login_form.documento.data).first()
-    #apellidos=User.filter_by(documento=login_form.documento.data).first()
-    
-    return render_template('dashboard.html') #,nombres=nombres, apellidos=apellidos)
+
+
+
 
 
 
